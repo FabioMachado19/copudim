@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>copudim: o pudim que você colhera.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #F9F8F6; 
+            --primary-color: #B57A42; 
+            --text-dark: #1F1A17; 
+            --text-muted: #6B6560; 
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--bg-color);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        @media (max-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .concept-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .img-tall {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .concept-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .concept-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .details-card {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .img-main {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .thumbs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .thumb-img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .form-card {
+            background: #EFECE8;
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .form-card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            background: var(--white);
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary-color);
+        }
+
+        .form-card label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background-color: #9A6331;
+        }
+
+        .form-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 15px;
+        }
+
+        footer {
+            margin-top: 60px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .footer-brand {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+        }
+
+        .footer-slogan {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+		
+		.hidden {
+			display: none !important;
+		}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <h1>copudim: o pudim que você colhera.</h1>
+            <p>A sobremesa icônica, no copo que você ama, reimaginada para o agora. Inscreva-se na lista de espera para o primeiro lote exclusivo.</p>
+        </header>
+
+        <div class="main-content">
+            
+            <!-- COLUNA ESQUERDA -->
+            <div class="concept-card">
+                <img src="copo-colher.png" alt="Copudim com colher dourada" class="img-tall">
+                <h3>Descubra a Experiência Copudim:</h3>
+                <p>O equilíbrio perfeito de sabores tradicionais em camadas sensoriais. O copo é seu para colecionar.</p>
+            </div>
+
+            <!-- COLUNA CENTRAL -->
+            <div class="details-card">
+                <img src="pudim-principal.png" alt="Copudim em detalhe" class="img-main">
+                
+                <div class="thumbs-grid">
+                    <img src="detalhe-crumble.png" alt="Detalhe do Crumble" class="thumb-img">
+                    <img src="detalhe-creme.png" alt="Creme super aveludado" class="thumb-img">
+                    <img src="detalhe-calda.png" alt="Calda de caramelo" class="thumb-img">
+                </div>
+            </div>
+
+            <!-- COLUNA DIREITA -->
+			
+			
+			
+            <div class="form-card">
+    <h2>garanta seu lugar no lançamento</h2>
+    
+    <!-- Iframe invisível para processar o envio -->
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+    
+    <!-- Formulário com a chamada da função corrigida -->
+    <form id="copudimForm" action="https://script.google.com/macros/s/AKfycbw7NnFww2FSfk-Foex9c0kbEZNQaH4PwtirlJjN9S0w-PpRHp_1ihRa7iFzuidUyHTi/exec" method="POST" target="hidden_iframe" onsubmit="processarEnvioElegante()">
+        <div class="form-group">
+            <input type="text" id="name" name="name" placeholder="Seu Nome" required>
+        </div>
+
+        <div class="form-group">
+            <input type="tel" id="whatsapp" name="whatsapp" placeholder="Seu WhatsApp" required>
+        </div>
+
+        <div class="form-group">
+            <input type="email" id="email" name="email" placeholder="E-mail" required>
+        </div>
+
+        <div class="form-group">
+            <label for="flavor">O que te faz suspirar?</label>
+            <select id="flavor" name="flavor">
+                <option value="Clássico Tostado">Clássico Tostado (Crumble + Caramelo)</option>
+                <option value="Brigadeiro de Colher">Brigadeiro de Colher Belga</option>
+                <option value="Romeu & Julieta">Romeu & Julieta (Goiabada Cascão)</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Quero entrar na lista de espera</button>
+    </form>
+    
+    <!-- Mensagem de sucesso (começa escondida com a classe 'hidden') -->
+    <div id="successMessage" class="hidden" style="text-align:center; padding: 20px 0;">
+        <p style="font-size: 1.1rem; font-weight: 500; color: #B57A42;">obrigado por se inscrever.</p>
+        <p style="font-size: 0.9rem; color: #6B6560; margin-top: 5px;">sua vaga no primeiro lote está garantida.</p>
+    </div>
+    
+    <p class="form-note" id="formNote">*edição limitada por tempo limitado.</p>
+</div>
+
+<!-- SCRIPT DE TRANSIÇÃO ULTRA SEGURO -->
+<script>
+    function processarEnvioElegante() {
+        const form = document.getElementById('copudimForm');
+        const btn = document.getElementById('submitBtn');
+        const msg = document.getElementById('successMessage');
+        const note = document.getElementById('formNote');
+        
+        // 1. Desabilita o botão para evitar cliques duplos
+        btn.innerText = "Enviando...";
+        btn.disabled = true;
+        
+        // 2. Transição: Esconde o formulário e exibe o sucesso usando classes
+        form.classList.add('hidden');
+        note.classList.add('hidden');
+        msg.classList.remove('hidden');
+        
+        // 3. Aguarda 4 segundos e força o retorno da página ao estado inicial
+        setTimeout(function() {
+            // Limpa os dados digitados
+            form.reset(); 
+            
+            // Inverte as classes para trazer o formulário de volta
+            msg.classList.add('hidden');
+            form.classList.remove('hidden');
+            note.classList.remove('hidden');
+            
+            // Restaura o botão original
+            btn.innerText = "Quero entrar na lista de espera";
+            btn.disabled = false;
+        }, 4000);
+    }
+</script>
+        </div>
+
+        <footer>
+            <div class="footer-brand">copudim</div>
+            <div class="footer-slogan">copudim. sem fôrmas, com alma.</div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
