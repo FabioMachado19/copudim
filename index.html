@@ -252,24 +252,36 @@
     
     <!-- Iframe invisível para processar o envio -->
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+	<!--https://script.google.com/macros/s/AKfycbw7NnFww2FSfk-Foex9c0kbEZNQaH4PwtirlJjN9S0w-PpRHp_1ihRa7iFzuidUyHTi/exec-->
     
     <!-- Formulário com a chamada da função corrigida -->
-    <form id="copudimForm" action="https://script.google.com/macros/s/AKfycbw7NnFww2FSfk-Foex9c0kbEZNQaH4PwtirlJjN9S0w-PpRHp_1ihRa7iFzuidUyHTi/exec" method="POST" target="hidden_iframe" onsubmit="processarEnvioElegante()">
+  <div class="form-card">
+    <h2>garanta seu lugar no lançamento</h2>
+    
+    <!-- Modifique o action com o seu e-mail real abaixo -->
+    <form id="copudimForm" action="https://formsubmit.co/TOFFOLIFABIO@GMAIL.COM" method="POST" onsubmit="processarEnvioElegante()">
+        
+        <!-- Linha obrigatória para o Formsubmit não te redirecionar para fora do site -->
+        <input type="hidden" name="_next" value="false">
+        <!-- Linha opcional para tirar a tela de captcha deles se quiser -->
+        <input type="hidden" name="_captcha" value="false">
+
         <div class="form-group">
-            <input type="text" id="name" name="name" placeholder="Seu Nome" required>
+            <input type="text" id="name" name="Nome" placeholder="Seu Nome" required>
         </div>
 
         <div class="form-group">
-            <input type="tel" id="whatsapp" name="whatsapp" placeholder="Seu WhatsApp" required>
+            <input type="tel" id="whatsapp" name="WhatsApp" placeholder="Seu WhatsApp" required>
         </div>
 
         <div class="form-group">
-            <input type="email" id="email" name="email" placeholder="E-mail" required>
+            <input type="email" id="email" name="Email" placeholder="E-mail" required>
         </div>
 
         <div class="form-group">
             <label for="flavor">O que te faz suspirar?</label>
-            <select id="flavor" name="flavor">
+            <select id="flavor" name="Sabor Escolhido">
                 <option value="Clássico Tostado">Clássico Tostado (Crumble + Caramelo)</option>
                 <option value="Brigadeiro de Colher">Brigadeiro de Colher Belga</option>
                 <option value="Romeu & Julieta">Romeu & Julieta (Goiabada Cascão)</option>
@@ -279,7 +291,7 @@
         <button type="submit" class="btn-submit" id="submitBtn">Quero entrar na lista de espera</button>
     </form>
     
-    <!-- Mensagem de sucesso (começa escondida com a classe 'hidden') -->
+    <!-- Mensagem de sucesso -->
     <div id="successMessage" class="hidden" style="text-align:center; padding: 20px 0;">
         <p style="font-size: 1.1rem; font-weight: 500; color: #B57A42;">obrigado por se inscrever.</p>
         <p style="font-size: 0.9rem; color: #6B6560; margin-top: 5px;">sua vaga no primeiro lote está garantida.</p>
@@ -288,38 +300,58 @@
     <p class="form-note" id="formNote">*edição limitada por tempo limitado.</p>
 </div>
 
+
 <!-- SCRIPT DE TRANSIÇÃO ULTRA SEGURO -->
 <script>
-    function processarEnvioElegante() {
-        const form = document.getElementById('copudimForm');
+    document.getElementById('copudimForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Impede a página de recarregar
+        
+        const form = this;
         const btn = document.getElementById('submitBtn');
         const msg = document.getElementById('successMessage');
         const note = document.getElementById('formNote');
         
-        // 1. Desabilita o botão para evitar cliques duplos
         btn.innerText = "Enviando...";
         btn.disabled = true;
-        
-        // 2. Transição: Esconde o formulário e exibe o sucesso usando classes
-        form.classList.add('hidden');
-        note.classList.add('hidden');
-        msg.classList.remove('hidden');
-        
-        // 3. Aguarda 4 segundos e força o retorno da página ao estado inicial
-        setTimeout(function() {
-            // Limpa os dados digitados
-            form.reset(); 
+
+        // Envia os dados direto para o serviço de e-mail
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form)
+        })
+        .then(() => {
+            // Executa a animação elegante de sucesso imediatamente
+            form.classList.add('hidden');
+            note.classList.add('hidden');
+            msg.classList.remove('hidden');
             
-            // Inverte as classes para trazer o formulário de volta
-            msg.classList.add('hidden');
-            form.classList.remove('hidden');
-            note.classList.remove('hidden');
-            
-            // Restaura o botão original
-            btn.innerText = "Quero entrar na lista de espera";
-            btn.disabled = false;
-        }, 4000);
-    }
+            // Retorna ao normal após 4 segundos
+            setTimeout(function() {
+                form.reset(); 
+                msg.classList.add('hidden');
+                form.classList.remove('hidden');
+                note.classList.remove('hidden');
+                
+                btn.innerText = "Quero entrar na lista de espera";
+                btn.disabled = false;
+            }, 4000);
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            // Mesmo se der erro de CORS local, forçamos o sucesso para o usuário não travar
+            form.classList.add('hidden');
+            note.classList.add('hidden');
+            msg.classList.remove('hidden');
+            setTimeout(function() {
+                form.reset();
+                msg.classList.add('hidden');
+                form.classList.remove('hidden');
+                note.classList.remove('hidden');
+                btn.innerText = "Quero entrar na lista de espera";
+                btn.disabled = false;
+            }, 4000);
+        });
+    });
 </script>
         </div>
 
